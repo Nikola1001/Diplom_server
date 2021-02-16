@@ -135,3 +135,14 @@ def about_task_for_user(request, user_id, name):
     return render(request, 'about_task_for_user.html', {'name': name_task, 'content': content, 'users': users})
 
 
+def mark_task_completed(request, user_id, name):     # Нужно удалить задачу у других юзеров
+    user = Profile.objects.get(user=user_id)
+    task = Tasks.objects.get(title=name)
+    name_task = Tasks.objects.get(title=name).title
+    content =Tasks.objects.get(title=name).content
+    users = Profile.objects.filter(selected_tasks=task)
+    task.status_completed = True
+
+
+    return render(request, 'about_task_for_user.html', {'name': name_task, 'content': content, 'users': users, 'answer':answer})
+

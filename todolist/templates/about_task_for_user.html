@@ -13,12 +13,13 @@
     <p>{{user.id}}</p>
     <p>{{user.selected_task}}</p>
 
-    <form method="post" action="{% url 'add_task_user' name user.id %}" >{% csrf_token %} {{ form.as_p }}
+    <form method="post" action="{% url 'mark_task_completed' name user.id %}" >{% csrf_token %} {{ form.as_p }}
     {% if answer %}
     <p>{{answer}}</p>
         {% else %}
-        <button >Взять заghjkl;'ение</button>
+        <button>Задача выполнена</button>
         {% endif %}
+</form>
 
 </form>
 </div>
