@@ -133,3 +133,5 @@ def about_task_for_user(request, user_id, name):
     name_task = task.title
     content = task.content
     return render(request, 'about_task_for_user.html', {'name': name_task, 'content': content, 'users': users})
+
+
