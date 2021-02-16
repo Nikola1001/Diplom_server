@@ -142,7 +142,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     # selected_tasks = models.ManyToManyField(Tasks, null=True, verbose_name='Выбранные задачи')
-    selected_tasks = models.ManyToManyField(Tasks, verbose_name='Выбранные задачи')
+    # selected_tasks = models.ManyToManyField(Tasks, verbose_name='Выбранные задачи')
 
     def __str__(self):
         return str(self.user)
@@ -159,5 +159,10 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
+class User_Task(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Пользователь')
+    task = models.ForeignKey(Tasks, on_delete=models.CASCADE, verbose_name='Выбранная задача')
 
+    def __str__(self):
+        return str(self.user) + ' ' + str(self.task)
 

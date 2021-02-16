@@ -14,11 +14,25 @@
     <p>{{user.selected_task}}</p>
 
     <form method="post" action="{% url 'mark_task_completed' name user.id %}" >{% csrf_token %} {{ form.as_p }}
-    {% if answer %}
-    <p>{{answer}}</p>
+    {% if answer_complete or answer_refuse%}
+    <p>{{answer_complete}}</p>
+
         {% else %}
         <button>Задача выполнена</button>
         {% endif %}
+
+</form>
+
+    <br><br>
+
+    <form method="post" action="{% url 'mark_task_refuse' name user.id %}" >{% csrf_token %} {{ form.as_p }}
+    {% if answer_refuse or answer_complete%}
+    <p>{{answer_refuse}}</p>
+
+        {% else %}
+        <button>Отказаться от задачи</button>
+        {% endif %}
+
 </form>
 
 </form>

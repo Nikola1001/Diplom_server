@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author, Genre, Book, BookInstance, Tasks, Category, Profile
+from .models import Author, Genre, Book, BookInstance, Tasks, Category, Profile, User_Task
 
 admin.site.register(Book)
 admin.site.register(Author)
@@ -8,7 +8,7 @@ admin.site.register(BookInstance)
 admin.site.register(Tasks)
 admin.site.register(Category)
 admin.site.register(Profile)
-
+admin.site.register(User_Task)
 # def display_genre(self):
 #     """
 #     Creates a string for the Genre. This is required to display genre in Admin.

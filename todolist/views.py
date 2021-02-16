@@ -1,5 +1,4 @@
-
-
+from django.db.models import QuerySet
 from django.shortcuts import render
 
 from .models import Book, Author, BookInstance, Genre
@@ -7,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic.edit import CreateView
-from .models import Tasks, Category, User, Profile
+from .models import Tasks, Category, User, Profile, User_Task
 from .forms import TasksForm, CategoryForm
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -56,9 +55,21 @@ def by_category(request, category_id):
 
 
 def by_task(request, name):
+    # task = Tasks.objects.get(title=name)
+    # users = Profile.objects.filter(selected_tasks = task)
+    # # users = User.objects.all()
+    # name_task = task.title
+    # content = task.content
+    # return render(request, 'by_task.html', {'name': name_task, 'content': content, 'users': users})
+####################
     task = Tasks.objects.get(title=name)
-    users = Profile.objects.filter(selected_tasks = task)
-    # users = User.objects.all()
+
+    users_all = User_Task.objects.filter(task=task)
+
+    users =[]
+    for u in users_all:
+        users.append(u.user)
+
     name_task = task.title
     content = task.content
     return render(request, 'by_task.html', {'name': name_task, 'content': content, 'users': users})
@@ -69,7 +80,13 @@ def tasks_by_user (request, user_id):
     # tasks = username.selected_tasks()
     # tasks = Tasks.objects.get(id=1)
     user = Profile.objects.get(user=user_id)
-    tasks = user.selected_tasks.all()
+    # tasks = user.selected_tasks.all()
+#######################################################
+    tasks = []
+    tasks_all = User_Task.objects.filter(user=user)
+    for task in tasks_all:
+        tasks.append(task.task)
+
     # tasks = username
     return render(request, 'task_by_user.html', {'tasks': tasks})
 
@@ -97,38 +114,62 @@ class CategoryCreateView(CreateView):
 
 
 def add_task_user(request, name, user_id):
+    # user = Profile.objects.get(user=user_id)
+    # task = Tasks.objects.get(title=name)
+    # users = Profile.objects.filter(selected_tasks=task)
+    # usdo = user.selected_tasks
+    #
+    # # user.selected_tasks.intersection(user.selected_tasks,  task)
+    #
+    # user.selected_tasks.add(task)
+    # user.save()
+    # do = user.selected_tasks.all()
+    # # do.union(task)
+    #
+    # print(type(task))
+    # print(type(user))
+    # print(type(users))
+    #
+    # # user.selected_tasks.add(task)
+    # user.bio = "sdgffdgdfgeregreg"
+    # us = user
+    # ts = task
+    # ut = us.selected_tasks
+    # if user in users:
+    #     answer = "Задача уже добавлена в список ваших задач"
+    # else:
+    #     answer = 'Задача успешно добавлена'
+    # name_task = task.title
+    # content = task.content
+    # return render(request, 'by_task.html', {'name': name_task, 'content': content, 'users': users, 'answer':answer, 'usdo':usdo ,'us':us, 'ts':ts, 'ut':ut, 'u':do})
+###############################################################
     user = Profile.objects.get(user=user_id)
     task = Tasks.objects.get(title=name)
-    users = Profile.objects.filter(selected_tasks=task)
-    usdo = user.selected_tasks
-
-    # user.selected_tasks.intersection(user.selected_tasks,  task)
-
-    user.selected_tasks.add(task)
-    user.save()
-    do = user.selected_tasks.all()
-    # do.union(task)
-
-    print(type(task))
-    print(type(user))
-    print(type(users))
-
-    # user.selected_tasks.add(task)
-    user.bio = "sdgffdgdfgeregreg"
-    us = user
-    ts = task
-    ut = us.selected_tasks
-    if user in users:
-        answer = "Задача уже добавлена в список ваших задач"
-    else:
+    users = User_Task.objects.filter(task=task).all()
+    find = User_Task.objects.filter(user=user, task=task)
+    answer=''
+    if not find:
+        us = User_Task(task=task, user=user)
+        us.save()
         answer = 'Задача успешно добавлена'
-    name_task = task.title
-    content = task.content
-    return render(request, 'by_task.html', {'name': name_task, 'content': content, 'users': users, 'answer':answer, 'usdo':usdo ,'us':us, 'ts':ts, 'ut':ut, 'u':do})
+    else:
+        answer = "Задача уже была добавлена в список ваших задач"
+    us = name_task= content = usdo= ts =ut =do= 'dolzhen bit text'
+    return render(request, 'by_task.html',
+                  {'name': name_task, 'content': content, 'users': users, 'answer': answer, 'usdo': usdo, 'us': us,
+                   'ts': ts, 'ut': ut, 'u': do})
+
+
+
 
 def about_task_for_user(request, user_id, name):
     task = Tasks.objects.get(title=name)
-    users = Profile.objects.filter(selected_tasks=task)
+######################################
+    # users = Profile.objects.filter(selected_tasks=task)
+    users_all = User_Task.objects.filter(task=task).all()
+    users = []
+    for us in users_all:
+        users.append(us.user)
     # users = User.objects.all()
     name_task = task.title
     content = task.content
@@ -138,11 +179,35 @@ def about_task_for_user(request, user_id, name):
 def mark_task_completed(request, user_id, name):     # Нужно удалить задачу у других юзеров
     user = Profile.objects.get(user=user_id)
     task = Tasks.objects.get(title=name)
-    name_task = Tasks.objects.get(title=name).title
-    content =Tasks.objects.get(title=name).content
-    users = Profile.objects.filter(selected_tasks=task)
+    name_task = task.title
+    content = task.content
+##########################
+    # users = Profile.objects.filter(selected_tasks=task)
+    users_all = User_Task.objects.filter(task=task).all()
+    users =[]
+    for us in users_all:
+        users.append(us.user)
     task.status_completed = True
+    task.save()
+    answer_complete='Задача отмечена как выполненная'
+
+    return render(request, 'about_task_for_user.html', {'name': name_task, 'content': content, 'users': users, 'answer_complete':answer_complete})
 
 
-    return render(request, 'about_task_for_user.html', {'name': name_task, 'content': content, 'users': users, 'answer':answer})
+def refuse_task(request, user_id, name):
+    user = Profile.objects.get(user=user_id)
+    task = Tasks.objects.get(title=name)
+    name_task = task.title
+    content = task.content
+    ##########################
+    # users = Profile.objects.filter(selected_tasks=task)
+    users_all = User_Task.objects.filter(task=task).all()
+    users = []
+    for us in users_all:
+        users.append(us.user)
+    # task.status_completed = True
+    # task.save()
+    answer_refuse = 'Вы отказались от задачи'
 
+    return render(request, 'about_task_for_user.html',
+                  {'name': name_task, 'content': content, 'users': users, 'answer_refuse': answer_refuse})
