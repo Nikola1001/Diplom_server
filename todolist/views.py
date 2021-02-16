@@ -1,4 +1,4 @@
-from django.db.models import QuerySet
+
 from django.shortcuts import render
 
 from .models import Book, Author, BookInstance, Genre
@@ -42,7 +42,10 @@ def index(request):
     tasks = Tasks.objects.all()
     num_tasks = Tasks.objects.all().count()
     categors = Category.objects.all()
-    context = {'tasks': tasks, 'categors': categors}
+    num_tasks = Tasks.objects.all().count()
+    num_completed = Tasks.objects.filter(status_completed=True).count()
+    num_process = User_Task.objects.all().count()
+    context = {'tasks': tasks, 'categors': categors, 'num_tasks': num_tasks, 'num_completed': num_completed, 'num_process': num_process}
     return render(request, 'index.html', context)
 
 
