@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<div>
+    <p>ZADACI USERA</p>
+    <h2>{{ tasks}}</h2>
+    {% for task in tasks %}
+<div>
+    <a href="{% url 'about_task_for_user' task.title user.id %}">{{ task.title }}</a>
+    <h2>{{ task.title}}</h2>
+    <p>{{ task.content }}</p>
+    <p>{{ task.published|date:'d.m.Y H:i:s' }}</p>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

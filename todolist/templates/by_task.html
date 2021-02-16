@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<div>
+
+    <h2>{{ name}}</h2>
+    <p>{{ content}}</p>
+    <p>{{users}}</p>
+
+    <p>{{user.id}}</p>
+    <p>{{user.selected_task}}</p>
+
+    <form method="post" action="{% url 'add_task_user' name user.id %}" >{% csrf_token %} {{ form.as_p }}
+    {% if answer %}
+    <p>{{answer}}</p>
+        {% else %}
+        <button >Взять задачу на выполнение</button>
+        {% endif %}
+</form>
+    <h1>TEST</h1>
+    <p>юзер</p>
+    <p>{{ us }}</p>
+    <p>Тек задача</p>
+    <p>{{ ts }}</p>
+    <p>Задачи после </p>
+    <p>{{ ut }}</p>
+    <p>ЗАдачи до </p>
+    <p>{{ usdo }}</p>
+    <p>UNION</p>
+    <p>{{u}}</p>
+</div>
+
+{% endblock %}

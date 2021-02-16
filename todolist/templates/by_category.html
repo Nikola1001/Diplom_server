@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block title %}{{ current_category.name }} {% endblock %}
+
+{% block content %}
+{% for task in tasks %}
+<div>
+    <a href="{% url 'by_task' task.title %}">{{ task.title }}</a>
+    <h2>{{ task.title}}</h2>
+    <p>{{ task.content }}</p>
+    <p>{{ task.published|date:'d.m.Y H:i:s' }}</p>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base_generic.html" %}
+{% block title %}Добавление категории задач{% endblock %}
+{% block content %}
+<h2>Добавление категории задач</h2>
+<form method="post">{% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Создать категорию"></form>{% endblock %}

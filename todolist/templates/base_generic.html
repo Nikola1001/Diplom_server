@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'todolist/style.css' %}">
+    <title>{% block title %}Главная {% endblock %} - доска объявлений</title>
+</head>
+<body>
+    <header>
+        <h1>Список задач</h1>
+    </header>
+    <nav>
+        <a href="{% url 'index' %}">Главная</a>
+        {% if user.is_authenticated and user.is_staff%}
+        <a href="{% url 'add' %}">Создать задачу</a>
+        <a href="{% url 'add_category' %}">Создать категорию</a>
+        {% endif %}
+        {% for category in categors %}
+        <ul>
+    <li><strong> <a href="{% url 'by_category' category.pk %}">{{ category.name}}</a></strong> </li>
+        </ul>
+        {% endfor %}
+
+
+    {% if user.is_authenticated %}
+        <p>Hi {{ user.username }}!</p>
+        <p><a href="{% url 'logout' %}">Log out</a></p>
+        <p><a href="{% url 'task_by_user' user.id %}">Мои задачи</a></p>
+      {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">Log In</a>
+        <a href="{% url 'signup' %}">Регистрация</a>
+      {% endif %}
+
+
+    </nav>
+   <section>
+       {% block content %}
+       {% endblock %}
+   </section>
+</body>
+</html>
