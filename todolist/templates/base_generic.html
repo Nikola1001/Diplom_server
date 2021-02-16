@@ -27,6 +27,7 @@
         <p>Hi {{ user.username }}!</p>
         <p><a href="{% url 'logout' %}">Log out</a></p>
         <p><a href="{% url 'task_by_user' user.id %}">Мои задачи</a></p>
+        <p><a href="{% url 'completed_tasks'  %}">Завершенные задачи</a></p>
       {% else %}
         <p>You are not logged in.</p>
         <a href="{% url 'login' %}">Log In</a>

@@ -105,22 +105,7 @@ class BookInstance(models.Model):
 
 
 
-class Tasks (models.Model):
-    paginate_by = 10
-    title = models.CharField(max_length=50, verbose_name='Название задачи')
-    content = models.TextField(null = True, blank=True, verbose_name='Описание')
-    # price = models.FloatField(null=True, blank=True, verbose_name='Цена')
-    published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Создана')
-    category = models.ForeignKey('Category', null=True, on_delete=models.PROTECT, verbose_name='Категория')
-    status_completed = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name_plural = 'Задачи'
-        verbose_name = 'Задача'
-        ordering = ['-published']
 
 
 
@@ -157,6 +142,25 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+class Tasks (models.Model):
+    paginate_by = 10
+    title = models.CharField(max_length=50, verbose_name='Название задачи')
+    content = models.TextField(null = True, blank=True, verbose_name='Описание')
+    # price = models.FloatField(null=True, blank=True, verbose_name='Цена')
+    published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Создана')
+    category = models.ForeignKey('Category', null=True, on_delete=models.PROTECT, verbose_name='Категория')
+    status_completed = models.BooleanField(default=False)
+    # user_completed_task = models.ForeignKey('Profile', null=True, on_delete=models.PROTECT, verbose_name='Пользователь, завершивший задачу')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Задачи'
+        verbose_name = 'Задача'
+        ordering = ['-published']
 
 
 class User_Task(models.Model):

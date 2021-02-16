@@ -183,10 +183,12 @@ def mark_task_completed(request, user_id, name):     # Нужно удалить
     content = task.content
 ##########################
     # users = Profile.objects.filter(selected_tasks=task)
-    users_all = User_Task.objects.filter(task=task).all()
+    # users_all = User_Task.objects.filter(task=task).all()
+    User_Task.objects.filter(task=task).all().delete()
     users =[]
-    for us in users_all:
-        users.append(us.user)
+    # for us in users_all:
+    #     us.remove()
+        # users.append(us.user)
     task.status_completed = True
     task.save()
     answer_complete='Задача отмечена как выполненная'
@@ -207,7 +209,25 @@ def refuse_task(request, user_id, name):
         users.append(us.user)
     # task.status_completed = True
     # task.save()
+    User_Task.objects.filter(user=user, task=task).delete()
     answer_refuse = 'Вы отказались от задачи'
 
     return render(request, 'about_task_for_user.html',
                   {'name': name_task, 'content': content, 'users': users, 'answer_refuse': answer_refuse})
+
+
+def completed_tasks(request):
+    tasks = Tasks.objects.filter(status_completed=True)
+    return render(request, 'completed_task.html', {'tasks': tasks})
+
+
+def about_completed_task(request, name):
+    task = Tasks.objects.get(title=name)
+    users_all = User_Task.objects.filter(task=task).all()
+    users = []
+    for us in users_all:
+        users.append(us.user)
+    # users = User.objects.all()
+    name_task = task.title
+    content = task.content
+    return render(request, 'about_completed_task.html', {'name': name_task, 'content': content, 'users': users})
