@@ -18,4 +18,5 @@ urlpatterns = [
     path('mark_task_refuse/<str:name>/<int:user_id>/', refuse_task, name='mark_task_refuse'),
     path('completed_task', completed_tasks, name='completed_tasks'),
     path('about_completed_task/<str:name>/', about_completed_task, name='about_completed_task'),
+
 ]
