@@ -12,6 +12,8 @@ from .models import Tasks, Category, User, Profile, User_Task
 from .forms import TasksForm, CategoryForm
 from django.shortcuts import redirect
 from django.http import HttpResponse
+
+from rest_api.models import Process, User_proc
 # class SignUpView(generic.CreateView):
 #     form_class = UserCreationForm
 #     success_url = reverse_lazy('login')
@@ -237,5 +239,10 @@ def about_completed_task(request, name):
     content = task.content
     return render(request, 'about_completed_task.html', {'name': name_task, 'content': content, 'users': users})
 
+
+def user_processes(request, user_id):
+    processes = ['dfgdfg', 'dfgdfgdf', 'rrrrrr', '55555555']
+    processes = Process.objects.all()
+    return render(request, 'user_processes.html', {'processes': processes})
 
 

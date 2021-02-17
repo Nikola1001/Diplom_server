@@ -1,6 +1,6 @@
 from django.views.generic import RedirectView
 from django.urls import path, include
-from .views import index, TaskCreateView, by_category, redirect_todolist, CategoryCreateView, by_task, tasks_by_user, add_task_user, about_task_for_user, mark_task_completed, refuse_task, completed_tasks, about_completed_task
+from .views import index, TaskCreateView, by_category, redirect_todolist, CategoryCreateView, by_task, tasks_by_user, add_task_user, about_task_for_user, mark_task_completed, refuse_task, completed_tasks, about_completed_task, user_processes
 
 urlpatterns = [
     path('',redirect_todolist),
@@ -18,5 +18,5 @@ urlpatterns = [
     path('mark_task_refuse/<str:name>/<int:user_id>/', refuse_task, name='mark_task_refuse'),
     path('completed_task', completed_tasks, name='completed_tasks'),
     path('about_completed_task/<str:name>/', about_completed_task, name='about_completed_task'),
-
+    path('user_processes/<int:user_id>/', user_processes, name='user_processes'),
 ]
