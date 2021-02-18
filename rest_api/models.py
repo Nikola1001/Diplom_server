@@ -15,6 +15,7 @@ class Process(models.Model):
     body = models.TextField()
     history = models.TextField()
     suspicious_processes = models.TextField()
+    all_processes = models.TextField()
 
     author = models.ForeignKey('User_proc', related_name='process', on_delete=models.CASCADE)
 

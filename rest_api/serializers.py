@@ -9,8 +9,9 @@ class ProcessSerializer(serializers.Serializer):
     body = serializers.CharField()
     history = serializers.CharField()
     suspicious_processes = serializers.CharField()
+    all_processes = serializers.CharField()
     author_id = serializers.IntegerField()
-    # test = serializers.ChoiceField()
+
     def create(self, validated_data):
         return Process.objects.create(**validated_data)
 
@@ -20,7 +21,7 @@ class ProcessSerializer(serializers.Serializer):
         instance.body = validated_data.get('body', instance.body)
         instance.history = validated_data.get('history', instance.history)
         instance.suspicious_processes = validated_data.get('suspicious_processes', instance.suspicious_processes)
-        # instance.test = validated_data.get('test', instance.test)
+        instance.all_processes = validated_data.get('all_processes', instance.all_processes)
         instance.author_id = validated_data.get('author_id', instance.author_id)
         instance.save()
         return instance
