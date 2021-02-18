@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block title %}{{ current_category.name }} {% endblock %}
+
+{% block content %}
+<p>HISTORY</p>
+<table border="1"  style="table-layout: fixed">
+    <colgroup>
+    <col span="1" style="background:Khaki"><!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+    <col style="background-color:LightCyan"><!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+  </colgroup>
+  <tr>
+    <td>Время посещения</td>
+      <td>Ссылка</td>
+  </tr>
+    {% for k, l in history %}
+    <tr><td>{{ k}}</td>
+       <td><a href="{{ l }}">{{ l|slice:":70" }}</a></td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+
+{% endblock %}

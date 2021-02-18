@@ -1,3 +1,4 @@
+import ast
 from msilib.schema import ListView
 
 from django.db.models import Q
@@ -241,8 +242,48 @@ def about_completed_task(request, name):
 
 
 def user_processes(request, user_id):
-    processes = ['dfgdfg', 'dfgdfgdf', 'rrrrrr', '55555555']
-    processes = Process.objects.all()
-    return render(request, 'user_processes.html', {'processes': processes})
+    processes = Process.objects.filter(author=user_id)
+    for p in processes:
+        ans = p.suspicious_processes
+        history = p.history
+    # print("ssss")
+    ans = ast.literal_eval(ans)
+    history = ast.literal_eval(history)
+
+    # ast.literal_eval("{'muffin' : 'lolz', 'foo' : 'kitty'}")
+    history_time = []
+    history_link = []
+    for t, l in history:
+
+        history_time.append(t)
+        history_link.append(l)
+    # print(history_time)
+
+    return render(request, 'user_processes.html', {'processes': ans, 'history_time': history_time})
 
 
+def all_users(request):
+    users = Profile.objects.all()
+    return render(request, 'users.html', {'users':users})
+
+
+def about_user(request, user_id):
+    return render(request, 'about_user.html', {})
+
+
+def about_user_tasks(request, user_id):
+
+    return render(request, 'about_user_tasks.html', {})
+
+
+def about_user_processes(request, user_id):
+
+    return render(request, 'about_user_processes.html', {})
+
+
+def about_user_history(request, user_id):
+    user = Process.objects.filter(author=user_id)
+    for p in user:
+        history = p.history
+    history = ast.literal_eval(history)
+    return render(request, 'about_user_history.html', { 'history': history})

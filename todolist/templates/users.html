@@ -3,13 +3,13 @@
 {% block title %}{{ current_category.name }} {% endblock %}
 
 {% block content %}
-{% for k, l in processes.items %}
+{{users}}
+{% for us in users %}
 <div>
-
-    <h2>{{ k}}</h2>
-    <p>{{ l }}</p>
+    <a href="{% url 'about_user' us.id %}">asdsad</a>
+    <h2>{{ us.user}}</h2>
+    <p>{{ us.bio }}</p>
 
 </div>
 {% endfor %}
-<p>{{ history_time }}</p>
 {% endblock %}
