@@ -13,6 +13,7 @@ class Process(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField()
     body = models.TextField()
+
     author = models.ForeignKey('User_proc', related_name='process', on_delete=models.CASCADE)
 
     def __str__(self):
