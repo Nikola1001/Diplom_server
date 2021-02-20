@@ -129,6 +129,9 @@ class Profile(models.Model):
     # selected_tasks = models.ManyToManyField(Tasks, null=True, verbose_name='Выбранные задачи')
     # selected_tasks = models.ManyToManyField(Tasks, verbose_name='Выбранные задачи')
 
+    refused_tasks = models.ManyToManyField('Tasks', null=True,
+                                            verbose_name='Задачи, от которых отказался')
+
     def __str__(self):
         return str(self.user)
 
@@ -152,7 +155,8 @@ class Tasks (models.Model):
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Создана')
     category = models.ForeignKey('Category', null=True, on_delete=models.PROTECT, verbose_name='Категория')
     status_completed = models.BooleanField(default=False)
-    # user_completed_task = models.ForeignKey('Profile', null=True, on_delete=models.PROTECT, verbose_name='Пользователь, завершивший задачу')
+    user_completed_task = models.ManyToManyField('Profile', null=True,
+                                            verbose_name='Пользователь, завершивший задачу')
 
     def __str__(self):
         return self.title

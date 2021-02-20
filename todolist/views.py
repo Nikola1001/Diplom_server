@@ -187,8 +187,12 @@ def about_task_for_user(request, user_id, name):
 def mark_task_completed(request, user_id, name):     # Нужно удалить задачу у других юзеров
     user = Profile.objects.get(user=user_id)
     task = Tasks.objects.get(title=name)
+    # task.user_completed_task = user
     name_task = task.title
     content = task.content
+    ##############################
+    # user.completed_task.add(task)      #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    task.user_completed_task.add(user)
 ##########################
     # users = Profile.objects.filter(selected_tasks=task)
     # users_all = User_Task.objects.filter(task=task).all()
@@ -207,6 +211,7 @@ def mark_task_completed(request, user_id, name):     # Нужно удалить
 def refuse_task(request, user_id, name):
     user = Profile.objects.get(user=user_id)
     task = Tasks.objects.get(title=name)
+    user.refused_tasks.add(task)
     name_task = task.title
     content = task.content
     ##########################
@@ -272,8 +277,14 @@ def about_user(request, user_id):
 
 
 def about_user_tasks(request, user_id):
-
-    return render(request, 'about_user_tasks.html', {})
+    user = Profile.objects.get(user=user_id)
+    tasks = []
+    tasks_all = User_Task.objects.filter(user=user)
+    for task in tasks_all:
+        tasks.append(task.task)
+    tasks_completed = Tasks.objects.filter(user_completed_task=user)
+    refused_tasks = user.refused_tasks.all()
+    return render(request, 'about_user_tasks.html', {'tasks_completed': tasks_completed, 'refused_tasks': refused_tasks, 'tasks': tasks})
 
 
 def about_user_processes(request, user_id):

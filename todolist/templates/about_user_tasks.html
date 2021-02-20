@@ -3,14 +3,37 @@
 {% block title %}{{ current_category.name }} {% endblock %}
 
 {% block content %}
-<p>ZADACHI</p>
-{% for k, l in processes.items %}
+<p>ZADACHIi</p>
+<p>Сейчас работает над задачами</p>
+
+{% for t in tasks %}
 <div>
 
-    <h2>{{ k}}</h2>
-    <p>{{ l }}</p>
+    <h2>{{ t.title }}</h2>
+
 
 </div>
 {% endfor %}
-<p>{{ history_time }}</p>
+
+<p>Выполнены этим пользователем</p>
+{% for t in tasks_completed %}
+<div>
+
+    <h2>{{ t.title }}</h2>
+
+
+</div>
+{% endfor %}
+
+<p>Отказался от</p>
+{% for t in refused_tasks %}
+<div>
+
+    <h2>{{ t.title }}</h2>
+
+
+</div>
+
+{% endfor %}
+
 {% endblock %}

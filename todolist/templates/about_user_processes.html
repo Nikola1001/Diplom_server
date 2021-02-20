@@ -4,18 +4,21 @@
 
 {% block content %}
 <p>PROCESSI Podozritelnie</p>
-{% for proc in suspicious_processes %}
+{% for proc, time in suspicious_processes.items %}
 <div>
     <h2>{{ proc }}</h2>
+    <p>{{ time }}</p>
+
 </div>
 {% endfor %}
 
 
 
 <p>OSTALNIE PROCESSI</p>
-{% for proc in all_processes %}
+{% for proc, time in all_processes.items %}
 <div>
     <h2>{{ proc }}</h2>
+    <p>{{ time }}</p>
 </div>
 {% endfor %}
 {% endblock %}
