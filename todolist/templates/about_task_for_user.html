@@ -4,16 +4,34 @@
 
 {% block content %}
 
-<div>
 
-    <h2>{{ name}}</h2>
-    <p>{{ content}}</p>
-    <p>{{users}}</p>
+<div class="container-wrapper">
+            <div class="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>
+            <div id="container">
+                <!-- start container -->
+                <div class="page-title-wrapper">
+                    <div class="page-title-outher">
+                        <div class="page-title-inner">
 
-    <p>{{user.id}}</p>
-    <p>{{user.selected_task}}</p>
-
-    <form method="post" action="{% url 'mark_task_completed' name user.id %}" >{% csrf_token %} {{ form.as_p }}
+                            <h1 class="page-title">{{ name}}</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="page-wrapper">
+                    <h1>{{ name}}</h1>
+                    <p>{{ content}}</p>
+                    <p>{{ date }}</p>
+                    <p>Над задачей работают: </p>
+                    <ul>
+                    {% for user in users %}
+                    <li>{{user}}</li>
+                      {% endfor %}
+                    </ul>
+                    <div class="clear"></div>
+                        <form method="post" action="{% url 'mark_task_completed' name user.id %}" >{% csrf_token %} {{ form.as_p }}
 
     {% if answer_complete or answer_refuse%}
     <p>{{answer_complete}}</p>
@@ -24,7 +42,7 @@
 
 </form>
 
-    <br><br>
+    <br>
 
     <form method="post" action="{% url 'mark_task_refuse' name user.id %}" >{% csrf_token %} {{ form.as_p }}
     {% if answer_refuse or answer_complete%}
@@ -35,8 +53,12 @@
         {% endif %}
 
 </form>
-
-</form>
-</div>
+                </div>
+                <!-- end page wrapper -->
+            </div>
+            <!-- end container -->
+            <div class="clear"></div>
+        </div>
+        <!-- end container-wrapper -->
 
 {% endblock %}

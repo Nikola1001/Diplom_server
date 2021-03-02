@@ -3,6 +3,105 @@
 {% block title %}{{ current_category.name }} {% endblock %}
 
 {% block content %}
+
+
+<div class="container-wrapper">
+            <div class="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>
+            <div id="container">
+                <!-- start container -->
+                <div class="page-title-wrapper">
+                    <div class="page-title-outher">
+                        <div class="page-title-inner">
+
+                            <h1 class="page-title">Задачи пользователя</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="page-wrapper">
+
+                        <div class="offer-menu-items">
+                            <div class="single-offer-category-item isotope-item cat1">
+                                <div class="single-offer-item">
+                                    <div class="single-offer-details">
+                                        <h4 style="color:#0000FF">Сейчас работает над задачами</h4>
+                                        <ul>
+                                            {% for t in tasks %}
+                                            <div>
+                                              <li>  <h6>{{ t.title }}</h6></li>
+                                            </div>
+                                            {% endfor %}
+                                            </ul>
+                                            <h4 style="color:#00FF00">Выполнены этим пользователем</h4>
+                                        <ul>
+                                            {% for t in tasks_completed %}
+                                            <div>
+
+                                                <li> <h6>{{ t.title }}</h6></li>
+
+
+                                                </div>
+                                        </ul>
+                                            {% endfor %}
+
+                                            <h4 style="color:#FF0000">Отказался от</h4>
+                                        <ul>
+                                            {% for t in refused_tasks %}
+                                            <div>
+                                                <li>  <h6>{{ t.title }}</h6></li>
+                                            </div>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
+                                    <div class="clear"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                </div>
+                <!-- end page wrapper -->
+            </div>
+            <!-- end container -->
+            <div class="clear"></div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <p>ZADACHIi</p>
 <p>Сейчас работает над задачами</p>
 

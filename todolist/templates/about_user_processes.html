@@ -3,6 +3,75 @@
 {% block title %}{{ current_category.name }} {% endblock %}
 
 {% block content %}
+
+
+<div class="container-wrapper">
+            <div class="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>
+            <div id="container">
+                <!-- start container -->
+                <div class="page-title-wrapper">
+                    <div class="page-title-outher">
+                        <div class="page-title-inner">
+
+                            <h1 class="page-title">Активность пользователя</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="page-wrapper">
+                    <h2>Подозрительные процессы:</h2>
+{% for proc, time in suspicious_processes.items %}
+<div>
+    <h4>{{ proc }}</h4>
+    <p>{{ time }}</p>
+
+</div>
+{% endfor %}
+
+
+
+ <h2>Все процессы:</h2>
+{% for proc, time in all_processes.items %}
+<div>
+    <h4>{{ proc }}</h4>
+    <p>{{ time }}</p>
+</div>
+{% endfor %}
+
+                    <div class="clear"></div>
+              </div>
+                <!-- end page wrapper -->
+            </div>
+            <!-- end container -->
+            <div class="clear"></div>
+        </div>
+        <!-- end container-wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <p>PROCESSI Podozritelnie</p>
 {% for proc, time in suspicious_processes.items %}
 <div>

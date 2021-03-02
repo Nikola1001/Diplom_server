@@ -3,7 +3,62 @@
 {% block title %}{{ current_category.name }} {% endblock %}
 
 {% block content %}
-<p>HISTORY</p>
+
+<div class="container-wrapper">
+            <div class="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>
+            <div id="container">
+                <!-- start container -->
+                <div class="page-title-wrapper">
+                    <div class="page-title-outher">
+                        <div class="page-title-inner">
+
+                            <h1 class="page-title">Сотрудники</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="page-wrapper">
+<table border="1"  style="table-layout: fixed">
+    <colgroup>
+    <col span="1" style="background:Khaki"><!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+    <col style="background-color:LightCyan"><!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+  </colgroup>
+  <tr>
+    <td width="102">Время посещения</td>
+      <td>Ссылка</td>
+  </tr>
+    {% for k, l in history %}
+    <tr><td>{{ k}}</td>
+       <td><a href="{{ l }}">{{ l|slice:":70" }}</a></td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+                    <div class="clear"></div>
+
+                </div>
+                <!-- end page wrapper -->
+            </div>
+            <!-- end container -->
+            <div class="clear"></div>
+        </div>
+        <!-- end container-wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table border="1"  style="table-layout: fixed">
     <colgroup>
     <col span="1" style="background:Khaki"><!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->

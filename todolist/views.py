@@ -4,7 +4,7 @@ from msilib.schema import ListView
 from django.db.models import Q
 from django.shortcuts import render
 
-from .models import Book, Author, BookInstance, Genre
+
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
@@ -80,7 +80,8 @@ def by_task(request, name):
 
     name_task = task.title
     content = task.content
-    return render(request, 'by_task.html', {'name': name_task, 'content': content, 'users': users})
+    date = task.published
+    return render(request, 'by_task.html', {'name': name_task, 'content': content, 'users': users, 'date': date})
 
 
 def tasks_by_user (request, user_id):
@@ -97,6 +98,8 @@ def tasks_by_user (request, user_id):
 
     # tasks = username
     return render(request, 'task_by_user.html', {'tasks': tasks})
+
+
 
 
 class TaskCreateView(CreateView):

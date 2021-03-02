@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('rest_api.urls')),
     path('', include('todolist.urls')),
+
 ]

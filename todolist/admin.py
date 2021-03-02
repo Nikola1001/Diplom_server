@@ -1,10 +1,7 @@
 from django.contrib import admin
-from .models import Author, Genre, Book, BookInstance, Tasks, Category, Profile, User_Task
+from .models import Tasks, Category, Profile, User_Task
 
-admin.site.register(Book)
-admin.site.register(Author)
-admin.site.register(Genre)
-admin.site.register(BookInstance)
+
 admin.site.register(Tasks)
 admin.site.register(Category)
 admin.site.register(Profile)

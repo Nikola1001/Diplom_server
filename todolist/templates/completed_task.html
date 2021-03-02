@@ -3,13 +3,57 @@
 {% block title %}{{ current_category.name }} {% endblock %}
 
 {% block content %}
-{% for task in tasks %}
-<div>
-    <a href="{% url 'about_completed_task' task.title %}">{{ task.title }}</a>
-    <p>COMPLETED</p>
-    <h2>{{ task.title}}</h2>
-    <p>{{ task.content }}</p>
-    <p>{{ task.published|date:'d.m.Y H:i:s' }}</p>
-</div>
-{% endfor %}
+
+<div class="container-wrapper">
+            <div class="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>
+            <div id="container">
+                <!-- start container -->
+                <div class="page-title-wrapper">
+                    <div class="page-title-outher">
+                        <div class="page-title-inner">
+
+                            <h1 class="page-title">Завершенные задачи</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="page-wrapper">
+
+
+
+
+
+
+                        <div class="offer-menu-items">
+                            <div class="single-offer-category-item isotope-item cat1">
+                                <div class="single-offer-item">
+                                    <div class="single-offer-details">
+                                        {% for task in tasks %}
+                                        <a class="single-offer-title" href="{% url 'about_completed_task' task.title %}">{{ task.title }}</a>
+                                        <div class="single-offer-content">
+                                            <p>{{ task.content }}</p>
+                                            <p>{{ task.published|date:'d.m.Y H:i:s' }}</p>
+                                        </div>
+                                        <br>
+                                         {% endfor %}
+                                    </div>
+
+                                    <div class="clear"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                </div>
+                <!-- end page wrapper -->
+            </div>
+            <!-- end container -->
+            <div class="clear"></div>
+        </div>
+
+
 {% endblock %}

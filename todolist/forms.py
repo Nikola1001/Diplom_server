@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Tasks, Category
+from .models import Tasks, Category, Profile
 
 class TasksForm(ModelForm):
     class Meta:
@@ -11,4 +11,5 @@ class CategoryForm(ModelForm):
     class Meta:
         model = Category
         fields = ('name',)
+
 

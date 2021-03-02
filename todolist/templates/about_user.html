@@ -4,6 +4,51 @@
 
 {% block content %}
 {{users}}
+
+
+
+<div class="container-wrapper">
+            <div class="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>
+            <div id="container">
+                <!-- start container -->
+                <div class="page-title-wrapper">
+                    <div class="page-title-outher">
+                        <div class="page-title-inner">
+
+                            <h1 class="page-title">Сотрудники</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="page-wrapper">
+
+                    <a style="font-size: 24px;" href="{% url 'about_user_tasks' user.id %}">Задачи пользователя</a><br>
+                    <a style="font-size: 24px;" href="{% url 'about_user_processes' user.id %}">Активность пользователя</a><br>
+                  <a style="font-size: 24px;" href="{% url 'about_user_history' user.id %}">История браузера</a>
+
+                    <div class="clear"></div>
+
+                </div>
+                <!-- end page wrapper -->
+            </div>
+            <!-- end container -->
+            <div class="clear"></div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <p>Вписать ФИО и данные</p>
 <div>
     <a href="{% url 'about_user_tasks' user.id %}">Задачи пользователя</a><br><br>

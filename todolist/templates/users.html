@@ -3,6 +3,51 @@
 {% block title %}{{ current_category.name }} {% endblock %}
 
 {% block content %}
+
+
+
+<div class="container-wrapper">
+            <div class="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>
+            <div id="container">
+                <!-- start container -->
+                <div class="page-title-wrapper">
+                    <div class="page-title-outher">
+                        <div class="page-title-inner">
+
+                            <h1 class="page-title">Сотрудники</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="page-wrapper">
+
+                    {% for us in users %}
+                    <a href="{% url 'about_user' us.id %}"><font size="4">{{us.first_last_name}}</font></a><br>
+                        <font>Никнейм: {{ us.user}}</font>
+                        <p>Должность: {{ us.position }}</p>
+                      {% endfor %}
+
+                    <div class="clear"></div>
+
+                </div>
+                <!-- end page wrapper -->
+            </div>
+            <!-- end container -->
+            <div class="clear"></div>
+        </div>
+        <!-- end container-wrapper -->
+
+
+
+
+
+
+
+
+
+
 {{users}}
 {% for us in users %}
 <div>

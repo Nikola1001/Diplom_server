@@ -1,6 +1,42 @@
 {% extends "base_generic.html" %}
 {% block title %}Добавление задачи{% endblock %}
 {% block content %}
-<h2>Добавление задачи</h2>
-<form method="post">{% csrf_token %} {{ form.as_p }}
-    <input type="submit" value="Создать задачу"></form>{% endblock %}
+
+<div class="container-wrapper">
+            <div class="page-bg" style=" background-image: url(upload/bg-create.png); "></div>
+
+            <div id="container" class="template-contact-container">
+                <!-- start container -->
+                <div class="page-title-wrapper">
+                    <div class="page-title-outher">
+                        <div class="page-title-inner">
+
+                            <h1 class="page-title">Добавление задачи</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="page-wrapper">
+                    <div class="contact-maps">
+                        <div id="map_canvas" class="mapStyleClass"></div>
+                    </div>
+                    <div class="contact-info-wrapper">
+
+                        </div>
+                        <div class="contact-form-wrapper">
+                            <div role="form" class="wpcf7" id="wpcf7-f49-p15-o1" lang="en-US" dir="ltr">
+                                <div class="screen-reader-response"></div>
+
+                                <form method="post">{% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Создать задачу"></form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!-- end page wrapper -->
+            </div>
+
+{% endblock %}

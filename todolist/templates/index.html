@@ -1,6 +1,53 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+
+
+
+<div class="container-wrapper">
+            <div class="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>
+            <div id="container">
+                <!-- start container -->
+                <div class="page-title-wrapper">
+                    <div class="page-title-outher">
+                        <div class="page-title-inner">
+
+                            <h1 class="page-title">Добро пожаловать на доску задач</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="page-wrapper">
+                    <ul>
+    <li><strong>Всего задач:</strong> {{ num_tasks }}</li>
+    <li><strong>В процессе выполнения:</strong> {{ num_process }}</li>
+    <li><strong>Завершенных:</strong> {{ num_completed }}</li>
+  </ul>
+                    <div class="clear"></div>
+
+                </div>
+                <!-- end page wrapper -->
+            </div>
+            <!-- end container -->
+            <div class="clear"></div>
+        </div>
+        <!-- end container-wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h1>Local Library Home</h1>
 
   <p>Welcome to <em>Tasks List</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
