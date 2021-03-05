@@ -24,5 +24,6 @@ urlpatterns = [
     path('about_user/history/<int:user_id>/', about_user_history, name='about_user_history'),
     path('about_user/processes/<int:user_id>/', about_user_processes, name='about_user_processes'),
     path('about_user/tasks/<int:user_id>/', about_user_tasks, name='about_user_tasks'),
+    path('about_user_processes_by_date/<int:user_id>/<str:date>/', about_user_processes_by_date, name='about_user_processes_by_date')
 
 ]

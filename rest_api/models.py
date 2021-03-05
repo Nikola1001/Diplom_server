@@ -12,7 +12,7 @@ class User_proc(models.Model):
 class Process(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField()
-    body = models.TextField()
+    date = models.TextField()
     history = models.TextField()
     suspicious_processes = models.TextField()
     all_processes = models.TextField()

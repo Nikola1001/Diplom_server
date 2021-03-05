@@ -6,7 +6,7 @@ class ProcessSerializer(serializers.Serializer):
 
     title = serializers.CharField(max_length=120)
     description = serializers.CharField()
-    body = serializers.CharField()
+    date = serializers.CharField()
     history = serializers.CharField()
     suspicious_processes = serializers.CharField()
     all_processes = serializers.CharField()
@@ -18,7 +18,7 @@ class ProcessSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
-        instance.body = validated_data.get('body', instance.body)
+        instance.date = validated_data.get('date', instance.date)
         instance.history = validated_data.get('history', instance.history)
         instance.suspicious_processes = validated_data.get('suspicious_processes', instance.suspicious_processes)
         instance.all_processes = validated_data.get('all_processes', instance.all_processes)

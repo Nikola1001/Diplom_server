@@ -291,14 +291,24 @@ def about_user_tasks(request, user_id):
 
 
 def about_user_processes(request, user_id):
-    user = Process.objects.filter(author=user_id)
+    dates = Process.objects.filter(author=user_id)
+    # user = Process.objects.filter(author=user_id)
+    # for p in user:
+    #     suspicious_processes = p.suspicious_processes
+    #     all_processes = p.all_processes
+    # suspicious_processes = ast.literal_eval(suspicious_processes)
+    # all_processes = ast.literal_eval(all_processes)
+    # return render(request, 'about_user_processes.html', {'suspicious_processes':suspicious_processes, 'all_processes': all_processes})
+    return render(request, 'about_user_processes.html', {'dates':dates})
+
+def about_user_processes_by_date(request, user_id, date):
+    user = Process.objects.filter(author=user_id, date=date)
     for p in user:
         suspicious_processes = p.suspicious_processes
         all_processes = p.all_processes
     suspicious_processes = ast.literal_eval(suspicious_processes)
     all_processes = ast.literal_eval(all_processes)
-    return render(request, 'about_user_processes.html', {'suspicious_processes':suspicious_processes, 'all_processes': all_processes})
-
+    return render(request, 'about_user_processes_by_date.html', {'suspicious_processes':suspicious_processes, 'all_processes': all_processes})
 
 def about_user_history(request, user_id):
     user = Process.objects.filter(author=user_id)
