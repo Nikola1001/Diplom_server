@@ -14,7 +14,7 @@ from .forms import TasksForm, CategoryForm
 from django.shortcuts import redirect
 from django.http import HttpResponse
 
-from rest_api.models import Process, User_proc
+from rest_api.models import Process
 # class SignUpView(generic.CreateView):
 #     form_class = UserCreationForm
 #     success_url = reverse_lazy('login')
@@ -276,7 +276,7 @@ def all_users(request):
 
 
 def about_user(request, user_id):
-    return render(request, 'about_user.html', {})
+    return render(request, 'about_user.html', {'user_id':user_id})
 
 
 def about_user_tasks(request, user_id):

@@ -24,9 +24,9 @@
                 <div class="clear"></div>
                 <div class="page-wrapper">
 
-                    <a style="font-size: 24px;" href="{% url 'about_user_tasks' user.id %}">Задачи пользователя</a><br>
-                    <a style="font-size: 24px;" href="{% url 'about_user_processes' user.id %}">Активность пользователя</a><br>
-                  <a style="font-size: 24px;" href="{% url 'about_user_history' user.id %}">История браузера</a>
+                    <a style="font-size: 24px;" href="{% url 'about_user_tasks' user_id %}">Задачи пользователя</a><br>
+                    <a style="font-size: 24px;" href="{% url 'about_user_processes' user_id %}">Активность пользователя</a><br>
+                  <a style="font-size: 24px;" href="{% url 'about_user_history' user_id %}">История браузера</a>
 
                     <div class="clear"></div>
 
@@ -37,24 +37,5 @@
             <div class="clear"></div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<p>Вписать ФИО и данные</p>
-<div>
-    <a href="{% url 'about_user_tasks' user.id %}">Задачи пользователя</a><br><br>
-    <a href="{% url 'about_user_processes' user.id %}">Активность пользователя</a><br><br>
-    <a href="{% url 'about_user_history' user.id %}">История браузера</a><br><br>
-
-</div>
 
 {% endblock %}

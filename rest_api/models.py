@@ -1,12 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-
-class User_proc(models.Model):
-  name = models.CharField(max_length=255)
-  email = models.EmailField()
-
-  def __str__(self):
-      return self.name
 
 
 class Process(models.Model):
@@ -17,7 +11,7 @@ class Process(models.Model):
     suspicious_processes = models.TextField()
     all_processes = models.TextField()
 
-    author = models.ForeignKey('User_proc', related_name='process', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
