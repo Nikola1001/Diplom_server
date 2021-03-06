@@ -1,12 +1,12 @@
 {% extends "base_generic.html" %}
-
+{% load static %}
 {% block title %}{% endblock %}
 
 {% block content %}
 
 
 <div class="container-wrapper">
-            <div class="page-bg" style=" background-image: url(upload/bg-pizza.jpg); "></div>
+            <div class="page-bg" style="background-image: url({% static 'images/frame.png' %});"></div>
             <div id="container">
                 <!-- start container -->
                 <div class="page-title-wrapper">

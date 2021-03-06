@@ -43,11 +43,12 @@
 
                 <div class="clear"></div>
             </div>
-            <div class="menu-wrapper">
+            <div class="menu-wrapper" style="width: 115%;">
                 <div class="main-menu">
                     <div class="menu-main-nav-menu-container">
                         <ul id="menu-main-nav-menu" class="sf-menu">
                             <li class="menu-item menu-item-home current-menu-item current_page_item"><a href="{% url 'index' %}">На главную</a></li>
+                            {% if user.is_authenticated %}
                             <li class="menu-item"><a href="{% url 'add' %}">Создать задачу</a></li>
                             <li class="menu-item"><a href="{% url 'add_category' %}">Создать категорию</a></li>
 
@@ -55,12 +56,13 @@
                                 <li><strong> <a href="{% url 'by_category' category.pk %}" style="color: #FF0000">{{ category.name}}</a></strong> </li>
                             {% endfor %}
 
-                            {% if user.is_authenticated %}
 
                             <li class="menu-item"><a href="{% url 'logout' %}">Выход</a></li>
                             <li class="menu-item"><a href="{% url 'task_by_user' user.id %}">Мои задачи</a></li>
                             <li class="menu-item"><a href="{% url 'completed_tasks'  %}">Решенные задачи</a></li>
+                            {% if user.is_staff %}
                             <li class="menu-item"><a href="{% url 'users' %}">Сотрудники</a></li>
+                            {% endif %}
                             {% else %}
                             <li class="menu-item"><a href="{% url 'login' %}">Вход</a></li>
                             <li class="menu-item"><a href="{% url 'signup' %}">Регистрация</a></li>
@@ -87,6 +89,7 @@
             <div class="menu-main-nav-menu-container">
                 <ul id="menu-main-nav-menu-1" class="mobile-menu">
                     <li class="menu-item menu-item-home current-menu-item current_page_item"><a href="{% url 'index' %}">На главную</a></li>
+                    {% if user.is_authenticated %}
                             <li class="menu-item"><a href="{% url 'add' %}">Создать задачу</a></li>
                             <li class="menu-item"><a href="{% url 'add_category' %}">Создать категорию</a></li>
 
@@ -94,12 +97,14 @@
                                 <li><strong> <a href="{% url 'by_category' category.pk %}" style="color: #FF0000">{{ category.name}}</a></strong> </li>
                             {% endfor %}
 
-                            {% if user.is_authenticated %}
+
 
                             <li class="menu-item"><a href="{% url 'logout' %}">Выход</a></li>
                             <li class="menu-item"><a href="{% url 'task_by_user' user.id %}">Мои задачи</a></li>
                             <li class="menu-item"><a href="{% url 'completed_tasks'  %}">Завершенные задачи</a></li>
+                            {% if user.is_staff %}
                             <li class="menu-item"><a href="{% url 'users' %}">Сотрудники</a></li>
+                            {% endif %}
                             {% else %}
                             <li class="menu-item"><a href="{% url 'login' %}">Вход</a></li>
                             <li class="menu-item"><a href="{% url 'signup' %}">Регистрация</a></li>
