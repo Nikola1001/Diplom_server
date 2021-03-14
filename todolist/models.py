@@ -55,7 +55,6 @@ class Tasks (models.Model):
     title = models.CharField(max_length=50, verbose_name='Название задачи')
     content = models.TextField(null = True, blank=True, verbose_name='Описание')
 
-    # price = models.FloatField(null=True, blank=True, verbose_name='Цена')
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Создана')
     category = models.ForeignKey('Category', null=True, on_delete=models.PROTECT, verbose_name='Категория')
     status_completed = models.BooleanField(default=False)
